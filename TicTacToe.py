@@ -29,28 +29,43 @@ def gewinncheck(x):
 		return True
 
 def spielen(x):
-	s1 = "Spieler: "
-	s2 = " Feld eingeben: "
-	inp = input( s1 + x + s2)
-	spielfeld[inp - 1] = x
+	ret = True
+	while ret :
+		s1 = "Spieler: "
+		s2 = " Feld eingeben: "
+		inp = input( s1 + x + s2)
+		#Check:
+		if inp < 1 or inp > 9 :
+			print("Eingabe ungueltig!")
+		elif spielfeld[inp - 1] !=  " " : 
+			print("Zug geht nicht!")
+		else:
+			spielfeld[inp - 1] = x
+			ret = False
+
 
 gewinn = True
 spieler = "x"
+runde = 1
 
-while gewinn:
+while gewinn and runde < 10:
 	ausg()
 	spielen(spieler)
 
 	gewinn = gewinncheck(spieler)
 
-	if spieler == "x":
-		spieler = "o"
-	else:
-		spieler = "x"
+	if gewinn:
+		if spieler == "x":
+			spieler = "o"
+		else:
+			spieler = "x"
+	
+	runde += 1
 
 
-print("Spieler " + spieler + " hat gewonnen!")
+if runde == 10  :
+	print("Unentschieden!")
+else:
+	print("Spieler " + spieler + " hat gewonnen!")
+
 ausg()
-
-
-spielfeld = ["x", " ", " ", " ", "x", " ", " ", " ", "x"]
