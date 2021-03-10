@@ -1,9 +1,12 @@
+import random
+
 spielfeld = [" "] * 9
 
 def ausg():
 	print(spielfeld[0:3])
 	print(spielfeld[3:6])
 	print(spielfeld[6:9])
+	print("")
 
 def gewinncheck(x):
 		#Zeile:
@@ -31,9 +34,12 @@ def gewinncheck(x):
 def spielen(x):
 	ret = True
 	while ret :
-		s1 = "Spieler: "
-		s2 = " Feld eingeben: "
-		inp = input( s1 + x + s2)
+		if runde%2 == 1:
+			s1 = "Spieler: "
+			s2 = " Feld eingeben: "
+			inp = input( s1 + x + s2)
+		else:
+			inp = random.randint(1, 9)
 		#Check:
 		if inp < 1 or inp > 9 :
 			print("Eingabe ungueltig!")
