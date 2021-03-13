@@ -1,27 +1,42 @@
 import time
 from PyDictionary import PyDictionary
+from tkinter import *
 
 dictionary=PyDictionary()
 
 text = (dictionary.meaning("indentation"))
 words = str(text).split(" ")
 
-print(words[2])
+root = Tk()
+topframe = Frame(root)
+bottomframe = Frame(root, bg = "black")
 
-startTime = time.time()
-word = 2
+topframe.pack()
+bottomframe.pack(side = BOTTOM)
 
-wordsGotRight = 0
+button1 = Button(bottomframe, text = "Submit", fg = "black")
+label1 = Label(topframe, text = "Text")
 
-while True:
-    print(words[word])
-    inp = input("Type: ")
-    if inp == str(words[word]):
-        wordsGotRight += 1 
+button1.pack()
+label1.pack()
 
-    word += 1
-    timeNow = time.time()
-    if timeNow - startTime >= 60:
-        break
+root.mainloop() 
 
-print("Finished: Your typing speed is: " + str(wordsGotRight))
+
+# startTime = time.time()
+# word = 2
+
+# wordsGotRight = 0
+
+# while True:
+#     print(words[word])
+#     inp = input("Type: ")
+#     if inp == str(words[word]):
+#         wordsGotRight += 1 
+
+#     word += 1
+#     timeNow = time.time()
+#     if timeNow - startTime >= 60:
+#         break
+
+# print("Finished: Your typing speed is: " + str(wordsGotRight))
